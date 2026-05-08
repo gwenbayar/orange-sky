@@ -121,26 +121,6 @@ size; download instructions in `pipeline/README.md`).
 See `pipeline/README.md` for live-archive details (FIRMS NRT vs SP, AirNow
 CSV format change, NOAA HMS URL layout, fires post-filter policy).
 
-## How I built this (AI-assisted workflow)
-
-The project was built top-to-bottom with Claude Code, using the *superpowers*
-plugin's brainstorming → writing-plans → execution skills. The full process is
-preserved in the repo:
-
-- **`docs/superpowers/specs/2026-05-05-pnw-smoke-dashboard-design.md`** — the
-  design spec written collaboratively before any code (architecture,
-  components, data flow, error handling, testing, decisions table).
-- **`docs/superpowers/plans/2026-05-06-phase-1-data-pipeline.md`** — the
-  sequenced TDD-style plan for the data pipeline phase.
-- **`docs/superpowers/plans/2026-05-08-phase-2-api.md`** — the (tighter)
-  plan for the API phase.
-- **Commit history** — each phase shows the build-test-refactor loop, plus
-  the diff that came from real-world contact with live data archives (FIRMS
-  NRT not having 2020 data, AirNow's archived CSV format being different
-  from the documented one, NOAA reorganizing the HMS smoke polygon URLs).
-
-The intent is that a reviewer can read the spec, the plans, and the commits
-in order and see the full reasoning chain — not just the final state.
 
 ## Tests
 
