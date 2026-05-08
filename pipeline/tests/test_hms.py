@@ -33,7 +33,7 @@ def test_transform_multi_day():
 @responses.activate
 def test_fetch_writes_kml(tmp_path):
     body = (FIX).read_bytes()
-    url = "https://satepsanone.nesdis.noaa.gov/pub/FIRE/web/HMS/Smoke_Polygons/2020/hms_smoke20200910.kml"
+    url = "https://satepsanone.nesdis.noaa.gov/pub/FIRE/web/HMS/Smoke_Polygons/KML/2020/09/hms_smoke20200910.kml"
     responses.add(responses.GET, url, body=body, status=200)
     out = fetch(date(2020, 9, 10), tmp_path)
     assert out.exists()

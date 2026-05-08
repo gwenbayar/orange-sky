@@ -1,4 +1,5 @@
-2020-09-10|13:00|M001|Portland Fire Stn|OR|UTC|44.65|-123.10|PM2.5|412.0|UG/M3|MULTNOMAH AQ
-2020-09-10|13:00|M002|Seattle Beacon Hill|WA|UTC|47.57|-122.31|PM2.5|178.0|UG/M3|PSCAA
-2020-09-10|14:00|M001|Portland Fire Stn|OR|UTC|44.65|-123.10|PM2.5|450.0|UG/M3|MULTNOMAH AQ
-2020-09-10|14:00|M002|Seattle Beacon Hill|WA|UTC|47.57|-122.31|PM2.5|185.0|UG/M3|PSCAA
+"AQSID","SiteName","Status","EPARegion","Latitude","Longitude","Elevation","GMTOffset","CountryCode","StateName","ValidDate","ValidTime","DataSource","ReportingArea_PipeDelimited","OZONE_AQI","PM10_AQI","PM25_AQI","NO2_AQI","OZONE_Measured","PM10_Measured","PM25_Measured","NO2_Measured","PM25","PM25_Unit","OZONE","OZONE_Unit","NO2","NO2_Unit","CO","CO_Unit","SO2","SO2_Unit","PM10","PM10_Unit"
+"M001","Portland Fire Stn","Active","R10","44.65","-123.10","10.0","0.0","US","OR","09/10/20","13:00","MULTNOMAH AQ","Portland","","","450","","0","0","1","0","412.0","UG/M3","","","","","","","","","",""
+"M002","Seattle Beacon Hill","Active","R10","47.57","-122.31","10.0","0.0","US","WA","09/10/20","13:00","PSCAA","Seattle","","","300","","0","0","1","0","178.0","UG/M3","","","","","","","","","",""
+"M001","Portland Fire Stn","Active","R10","44.65","-123.10","10.0","0.0","US","OR","09/10/20","14:00","MULTNOMAH AQ","Portland","","","450","","0","0","1","0","450.0","UG/M3","","","","","","","","","",""
+"M002","Seattle Beacon Hill","Active","R10","47.57","-122.31","10.0","0.0","US","WA","09/10/20","14:00","PSCAA","Seattle","","","300","","0","0","1","0","185.0","UG/M3","","","","","","","","","",""

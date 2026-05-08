@@ -19,7 +19,7 @@ def fake_raw_tree(tmp_path):
     (raw / "airnow").mkdir(parents=True)
     shutil.copy(fix_dir / "firms_sample.csv", raw / "firms" / "firms.csv")
     shutil.copy(fix_dir / "hms_sample.kml", raw / "hms" / "hms_smoke20200910.kml")
-    shutil.copy(fix_dir / "airnow_sample.csv", raw / "airnow" / "HourlyData_2020091013.dat")
+    shutil.copy(fix_dir / "airnow_sample.csv", raw / "airnow" / "HourlyAQObs_2020091013.dat")
     return raw
 
 

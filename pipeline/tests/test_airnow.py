@@ -25,12 +25,17 @@ def test_transform_groups_by_monitor_and_summarizes():
     assert ts["M001"][0]["pm25"] == 412.0
 
 
+def test_transform_filters_by_state():
+    out = transform([FIX], states=("OR",))
+    assert {m["id"] for m in out["monitors"]} == {"M001"}
+
+
 @responses.activate
 def test_fetch_one_day_writes_24_files(tmp_path):
     body = FIX.read_bytes()
     for hh in range(24):
         url = (
-            f"https://files.airnowtech.org/airnow/2020/20200910/HourlyData_20200910{hh:02d}.dat"
+            f"https://files.airnowtech.org/airnow/2020/20200910/HourlyAQObs_20200910{hh:02d}.dat"
         )
         responses.add(responses.GET, url, body=body, status=200)
     out = fetch(date(2020, 9, 10), date(2020, 9, 11), tmp_path)

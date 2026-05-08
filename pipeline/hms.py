@@ -64,14 +64,15 @@ def transform(kml_by_day: dict[date, Path]) -> dict:
     return {"type": "FeatureCollection", "features": features}
 
 
-HMS_BASE = "https://satepsanone.nesdis.noaa.gov/pub/FIRE/web/HMS/Smoke_Polygons"
+HMS_BASE = "https://satepsanone.nesdis.noaa.gov/pub/FIRE/web/HMS/Smoke_Polygons/KML"
 
 
 def fetch(day: date, dest_dir: Path) -> Path:
     """Download one HMS daily KML for `day` to `dest_dir`. Returns the file path."""
     yyyy = day.strftime("%Y")
+    mm = day.strftime("%m")
     fname = f"hms_smoke{day.strftime('%Y%m%d')}.kml"
-    url = f"{HMS_BASE}/{yyyy}/{fname}"
+    url = f"{HMS_BASE}/{yyyy}/{mm}/{fname}"
     dest_dir.mkdir(parents=True, exist_ok=True)
     out = dest_dir / fname
     resp = requests.get(url, timeout=60)
