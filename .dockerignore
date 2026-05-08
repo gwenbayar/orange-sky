@@ -1,0 +1,14 @@
+.git
+.venv
+.worktrees
+.superpowers
+.claude
+data/raw
+data/FPA_FOD_*.sqlite
+node_modules
+web/node_modules
+web/dist
+**/__pycache__
+**/.pytest_cache
+*.egg-info
+docs
