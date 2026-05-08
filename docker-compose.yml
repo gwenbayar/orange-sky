@@ -1,0 +1,22 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    image: pnw-smoke-api:dev
+    environment:
+      - SNAPSHOT_DIR=/app/data/snapshot/2020-labor-day
+    volumes:
+      - ./data/snapshot:/app/data/snapshot:ro
+    ports:
+      - "8000:8000"
+
+  web:
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+    image: pnw-smoke-web:dev
+    depends_on:
+      - api
+    ports:
+      - "5173:80"
