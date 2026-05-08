@@ -1,0 +1,7 @@
+id: 2020-labor-day
+name: 2020 Labor Day Fires (OR/WA)
+window:
+  start: 2020-09-07
+  end: 2020-09-14
+bbox: [-125.0, 41.0, -115.0, 49.0]
+states: [WA, OR, ID, MT, CA]
