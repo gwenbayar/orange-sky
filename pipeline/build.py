@@ -10,10 +10,41 @@ from pipeline.config import EventConfig, load_event
 
 _SAFE_ID = re.compile(r"[^A-Za-z0-9_-]")
 
+# FIRMS post-filter thresholds. VIIRS at 375m generates many low-FRP detects from
+# warm soil/sun-glint; the dashboard map is unreadable at 70k+ points. Dropping
+# low-confidence + FRP<10 MW retains the headline fires while keeping the
+# committed snapshot reasonable in size.
+_FIRMS_DROP_LOW_CONFIDENCE = True
+_FIRMS_MIN_FRP_MW = 20.0
+_LOW_CONF_VALUES = {"l", "low"}
+
 
 def _safe_filename(value: str) -> str:
     """Sanitize a monitor ID for use as a filename. Replaces non-alphanumeric/_/- with `_`."""
     return _SAFE_ID.sub("_", value)
+
+
+def _filter_fires(fires: dict) -> dict:
+    """Drop low-confidence and very weak (FRP < threshold) fire detections, round
+    coords to 4 decimals (~11m), and strip properties the dashboard doesn't render."""
+    kept = []
+    for f in fires["features"]:
+        props = f["properties"]
+        if _FIRMS_DROP_LOW_CONFIDENCE and props.get("confidence", "").lower() in _LOW_CONF_VALUES:
+            continue
+        if float(props.get("frp", 0.0)) < _FIRMS_MIN_FRP_MW:
+            continue
+        lon, lat = f["geometry"]["coordinates"]
+        kept.append({
+            "type": "Feature",
+            "geometry": {"type": "Point", "coordinates": [round(lon, 4), round(lat, 4)]},
+            "properties": {
+                "acq_datetime": props["acq_datetime"],
+                "confidence": props["confidence"],
+                "frp": round(float(props["frp"]), 1),
+            },
+        })
+    return {"type": "FeatureCollection", "features": kept}
 
 
 def _write_json(path: Path, obj) -> None:
@@ -40,12 +71,15 @@ def build_snapshot(
     aggregate FPA FOD from `fpa_db`, and write the snapshot tree under `out_dir`."""
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    fires = firms.transform(
+    fires = _filter_fires(firms.transform(
         sorted((raw_dir / "firms").glob("*.csv")),
         bbox=cfg.bbox,
-    )
+    ))
     smoke = hms.transform(_kmls_by_day(raw_dir / "hms"))
-    air = airnow.transform(sorted((raw_dir / "airnow").glob("HourlyData_*.dat")))
+    air = airnow.transform(
+        sorted((raw_dir / "airnow").glob("HourlyAQObs_*.dat")),
+        states=cfg.states,
+    )
     historic = fpa_fod.aggregate(fpa_db, states=tuple(cfg.states))
 
     _write_json(out_dir / "fires.json", fires)
