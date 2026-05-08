@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from pipeline.build import build_snapshot
+from pipeline.build import _filter_fires, build_snapshot
 from pipeline.config import EventConfig
 
 
@@ -47,3 +47,37 @@ def test_build_writes_full_snapshot_tree(tmp_path, fake_raw_tree, tiny_fpa_fod):
     assert manifest["id"] == "2020-labor-day"
     assert manifest["window"]["start"] == "2020-09-10"
     assert "sources" in manifest
+
+
+def test_filter_fires_drops_low_confidence_and_low_frp():
+    """Lock the FRP/confidence policy in CI so accidental retunes are visible."""
+    fc = {
+        "type": "FeatureCollection",
+        "features": [
+            # high-conf, FRP=55 → kept
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [-122.0, 44.5]},
+                "properties": {"acq_datetime": "2020-09-10T18:00:00Z", "confidence": "high", "frp": 55.2, "extra": "drop me"},
+            },
+            # nominal, FRP=12 → dropped (below 20 MW threshold)
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [-122.5, 44.6]},
+                "properties": {"acq_datetime": "2020-09-10T18:00:00Z", "confidence": "nominal", "frp": 12.5, "extra": "drop me"},
+            },
+            # low-conf, FRP=99 → dropped (low confidence)
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [-123.0, 44.7]},
+                "properties": {"acq_datetime": "2020-09-10T18:00:00Z", "confidence": "low", "frp": 99.0, "extra": "drop me"},
+            },
+        ],
+    }
+    out = _filter_fires(fc)
+    assert len(out["features"]) == 1
+    f = out["features"][0]
+    # extra props stripped
+    assert set(f["properties"]) == {"acq_datetime", "confidence", "frp"}
+    # coords rounded to 4 decimals
+    assert f["geometry"]["coordinates"] == [-122.0, 44.5]

@@ -10,20 +10,9 @@ import requests
 NAAQS_PM25_24H = 35.0  # µg/m³
 AIRNOW_BASE = "https://files.airnowtech.org/airnow"
 
-# AirNow `HourlyAQObs_*.dat` is a CSV with a header row. We pull the fields we
-# need by name so column reordering won't silently break us.
-_FIELDS = (
-    "AQSID",
-    "SiteName",
-    "StateName",
-    "Latitude",
-    "Longitude",
-    "DataSource",
-    "ValidDate",
-    "ValidTime",
-    "PM25",
-    "PM25_Unit",
-)
+# AirNow `HourlyAQObs_*.dat` is a CSV with a header row. _parse_row pulls
+# fields by name (via csv.DictReader) so column reordering won't silently
+# break us.
 
 
 def _iter_rows(path: Path):

@@ -10,10 +10,10 @@ from pipeline.config import EventConfig, load_event
 
 _SAFE_ID = re.compile(r"[^A-Za-z0-9_-]")
 
-# FIRMS post-filter thresholds. VIIRS at 375m generates many low-FRP detects from
-# warm soil/sun-glint; the dashboard map is unreadable at 70k+ points. Dropping
-# low-confidence + FRP<10 MW retains the headline fires while keeping the
-# committed snapshot reasonable in size.
+# FIRMS post-filter thresholds. VIIRS at 375m generates many low-FRP detects
+# from warm soil/sun-glint; the dashboard map is unreadable at 70k+ points and
+# the snapshot is too heavy to ship. Dropping low-confidence and detections
+# below _FIRMS_MIN_FRP_MW retains the headline fires.
 _FIRMS_DROP_LOW_CONFIDENCE = True
 _FIRMS_MIN_FRP_MW = 20.0
 _LOW_CONF_VALUES = {"l", "low"}
