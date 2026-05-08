@@ -1,7 +1,11 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
 [project]
-name = "pnw-smoke-pipeline"
+name = "pnw-smoke-dashboard"
 version = "0.1.0"
-description = "Heterogeneous data pipeline for the PNW Smoke Response dashboard."
+description = "PNW Smoke Response dashboard — pipeline + API + web."
 requires-python = ">=3.12"
 dependencies = [
   "pandas>=2.2",
@@ -10,17 +14,23 @@ dependencies = [
   "fastkml>=1.0",
   "shapely>=2.0",
   "python-dotenv>=1.0",
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.29",
 ]
 
 [project.optional-dependencies]
 dev = [
   "pytest>=8.0",
   "responses>=0.25",
+  "httpx>=0.27",
   "ruff>=0.4",
 ]
 
+[tool.setuptools.packages.find]
+include = ["pipeline*", "api*"]
+
 [tool.pytest.ini_options]
-testpaths = ["pipeline/tests"]
+testpaths = ["pipeline/tests", "api/tests"]
 addopts = "-q"
 
 [tool.ruff]
