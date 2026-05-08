@@ -92,8 +92,7 @@ body, html, #root {
 /* ── Map ─────────────────────────────────────────────── */
 .event-map { width: 100%; height: auto; display: block; }
 .event-map .map-bg {
-  /* muted slate, suggests ocean/negative space without competing with smoke */
-  fill: #d6dee3;
+  fill: #ffffff;
 }
 .event-map .state-outline {
   /* warm sand for land; medium-gray strokes give clear shape */
