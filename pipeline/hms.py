@@ -1,6 +1,11 @@
+import logging
 from datetime import date
 from pathlib import Path
 from xml.etree import ElementTree as ET
+
+import requests
+
+logger = logging.getLogger(__name__)
 
 NS = {"kml": "http://www.opengis.net/kml/2.2"}
 
@@ -19,7 +24,7 @@ def _parse_kml(path: Path, day: date) -> list[dict]:
     features: list[dict] = []
     for pm in root.iter("{%s}Placemark" % NS["kml"]):
         # density
-        density_val = 0.0
+        density_val: float | None = None
         for d in pm.iter("{%s}Data" % NS["kml"]):
             if d.get("name") == "Density":
                 v = d.find("{%s}value" % NS["kml"])
@@ -37,10 +42,15 @@ def _parse_kml(path: Path, day: date) -> list[dict]:
         for token in coords_el.text.strip().split():
             lon, lat, *_ = token.split(",")
             ring.append([float(lon), float(lat)])
+        if density_val is None:
+            logger.warning("No Density tag found in KML file: %s", path)
+            density_label = "Unknown"
+        else:
+            density_label = _density_label(density_val)
         features.append({
             "type": "Feature",
             "geometry": {"type": "Polygon", "coordinates": [ring]},
-            "properties": {"day": day.isoformat(), "density": _density_label(density_val)},
+            "properties": {"day": day.isoformat(), "density": density_label},
         })
     return features
 
@@ -53,8 +63,6 @@ def transform(kml_by_day: dict[date, Path]) -> dict:
         features.extend(_parse_kml(path, day))
     return {"type": "FeatureCollection", "features": features}
 
-
-import requests
 
 HMS_BASE = "https://satepsanone.nesdis.noaa.gov/pub/FIRE/web/HMS/Smoke_Polygons"
 

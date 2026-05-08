@@ -1,7 +1,9 @@
 from datetime import date
 from pathlib import Path
 
-from pipeline.hms import transform
+import responses
+
+from pipeline.hms import fetch, transform
 
 
 FIX = Path(__file__).parent / "fixtures" / "hms_sample.kml"
@@ -26,12 +28,6 @@ def test_transform_multi_day():
     days = {f["properties"]["day"] for f in out["features"]}
     assert days == {"2020-09-10", "2020-09-11"}
     assert len(out["features"]) == 4
-
-
-import responses
-from datetime import date
-
-from pipeline.hms import fetch
 
 
 @responses.activate
