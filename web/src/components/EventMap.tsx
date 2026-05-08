@@ -82,16 +82,19 @@ export function EventMap({
           className="event-bbox"
         />
 
-        {/* smoke polygons under fires */}
+        {/* smoke polygons under fires — skip Unknown so a parser regression
+            can't blanket the map */}
         <g className="smoke">
-          {smoke.features.map((f, i) => (
-            <path
-              key={i}
-              d={path(f as never) || undefined}
-              fill={DENSITY_FILL[f.properties.density] ?? DENSITY_FILL.Unknown}
-              stroke="none"
-            />
-          ))}
+          {smoke.features
+            .filter((f) => f.properties.density !== 'Unknown')
+            .map((f, i) => (
+              <path
+                key={i}
+                d={path(f as never) || undefined}
+                fill={DENSITY_FILL[f.properties.density] ?? 'transparent'}
+                stroke="none"
+              />
+            ))}
         </g>
 
         {/* fire detects */}
