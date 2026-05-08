@@ -91,13 +91,22 @@ body, html, #root {
 
 /* ── Map ─────────────────────────────────────────────── */
 .event-map { width: 100%; height: auto; display: block; }
+.event-map .map-bg {
+  /* muted slate, suggests ocean/negative space without competing with smoke */
+  fill: #d6dee3;
+}
 .event-map .state-outline {
-  fill: #fafaf6; stroke: #c4c4be; stroke-width: 0.5px;
+  /* warm sand for land; medium-gray strokes give clear shape */
+  fill: #f4ecdb;
+  stroke: #6a6a64;
+  stroke-width: 0.8px;
+  stroke-linejoin: round;
 }
 .event-map .event-bbox {
-  fill: none; stroke: #1a1a1a; stroke-dasharray: 3 3; stroke-width: 0.7;
+  fill: rgba(122, 26, 26, 0.04);
+  stroke: #7a1a1a; stroke-dasharray: 4 3; stroke-width: 1.2;
 }
-.event-map .fire-dot { fill: #1a1a1a; opacity: 0.55; }
+.event-map .fire-dot { fill: #1a1a1a; opacity: 0.7; }
 .event-map .monitor-dot { cursor: pointer; }
 .event-map .monitor-dot:hover { stroke-width: 2; }
 

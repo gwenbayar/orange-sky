@@ -61,7 +61,10 @@ export function EventMap({
     <div className="map-card">
       <div className="card-title">Map — {event.name}</div>
       <svg ref={ref} viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className="event-map" role="img" aria-label="Map of fire detections, smoke polygons, and air quality monitors">
-        {/* state outlines */}
+        {/* ocean / negative-space background */}
+        <rect x={0} y={0} width={WIDTH} height={HEIGHT} className="map-bg" />
+
+        {/* state outlines (land masses) */}
         {statesGeo && (
           <g className="states">
             {statesGeo.features.map((f, i) => (
