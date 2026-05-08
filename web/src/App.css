@@ -1,0 +1,135 @@
+/* Government / report aesthetic — light, restrained, system fonts. */
+
+* { box-sizing: border-box; }
+
+:root {
+  --ink: #1a1a1a;
+  --paper: #f7f7f5;
+  --line: #d8d8d4;
+  --muted: #6b6b66;
+  --danger: #7a1a1a;
+}
+
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: -apple-system, 'Inter', 'Segoe UI', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  width: 100%;
+  text-align: left;
+}
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.loading-page, .error-page {
+  padding: 48px;
+  color: var(--muted);
+}
+.error-page h1 { color: var(--danger); margin-bottom: 8px; font-size: 18px; }
+.error-page .hint { font-size: 13px; }
+.error-page code { background: #eee; padding: 1px 4px; border-radius: 2px; }
+
+/* ── Header ──────────────────────────────────────────── */
+.app-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+.brand-eyebrow {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--muted); font-weight: 600;
+}
+.brand-title { font-size: 22px; font-weight: 700; margin: 2px 0 4px; }
+.brand-sub { font-size: 12px; color: var(--muted); }
+.header-attrib {
+  font-size: 11px; color: var(--muted);
+  text-align: right; max-width: 280px;
+}
+
+/* ── Layout ──────────────────────────────────────────── */
+.layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 20px;
+}
+
+.main-col { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+
+/* ── KPI rail ────────────────────────────────────────── */
+.kpi-rail { display: flex; flex-direction: column; gap: 14px; }
+.kpi {
+  background: #fff; border: 1px solid var(--line); padding: 12px;
+  border-radius: 2px;
+}
+.kpi-label {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); margin-bottom: 4px;
+}
+.kpi-value { font-size: 22px; font-weight: 600; }
+.kpi-value.danger { color: var(--danger); }
+.kpi-unit { font-size: 12px; font-weight: 400; color: var(--muted); }
+.kpi-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* ── Cards ───────────────────────────────────────────── */
+.map-card, .ts-card, .historic-card {
+  background: #fff; border: 1px solid var(--line); border-radius: 2px;
+  padding: 14px;
+}
+.card-title {
+  font-size: 12px; font-weight: 600; color: var(--ink);
+  border-bottom: 1px solid var(--line); padding-bottom: 8px; margin-bottom: 10px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+
+/* ── Map ─────────────────────────────────────────────── */
+.event-map { width: 100%; height: auto; display: block; }
+.event-map .state-outline {
+  fill: #fafaf6; stroke: #c4c4be; stroke-width: 0.5px;
+}
+.event-map .event-bbox {
+  fill: none; stroke: #1a1a1a; stroke-dasharray: 3 3; stroke-width: 0.7;
+}
+.event-map .fire-dot { fill: #1a1a1a; opacity: 0.55; }
+.event-map .monitor-dot { cursor: pointer; }
+.event-map .monitor-dot:hover { stroke-width: 2; }
+
+.legend {
+  margin-top: 10px; padding-top: 10px;
+  border-top: 1px dashed var(--line);
+  font-size: 11px; color: var(--muted);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.legend-row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.legend-label { font-weight: 600; color: var(--ink); }
+.legend-chip {
+  padding: 2px 6px; border: 1px solid; border-radius: 2px;
+  font-size: 10px; color: var(--ink);
+}
+
+/* ── Time-series chart ───────────────────────────────── */
+.chart-wrap { height: 240px; }
+.empty-state {
+  padding: 48px 16px; text-align: center; color: var(--muted);
+  font-size: 13px;
+}
+.ts-footnote { font-size: 11px; color: var(--muted); margin-top: 6px; }
+
+/* ── Historic strip ──────────────────────────────────── */
+.strip-wrap { height: 120px; }
+
+/* ── Footer ──────────────────────────────────────────── */
+.app-footer {
+  margin-top: 24px;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  font-size: 11px;
+  color: var(--muted);
+}
