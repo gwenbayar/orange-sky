@@ -52,18 +52,6 @@ are exceeding NAAQS, and how is it tracking against the source fires?*
 <img width="1470" height="753" alt="Screenshot 2026-05-09 at 8 10 26 PM" src="https://github.com/user-attachments/assets/d6d5ef47-d3a1-44c9-8e6b-8c6bb0dd62fe" />
 <img width="1470" height="715" alt="Screenshot 2026-05-09 at 8 11 30 PM" src="https://github.com/user-attachments/assets/16789bf2-1b6b-4275-b099-5968b8d95436" />
 
-
-## How this maps to the fellowship JD
-
-| JD bullet                                        | Where in this repo                               |
-| ------------------------------------------------ | ------------------------------------------------ |
-| Acquire, clean, combine heterogeneous datasets   | `pipeline/` — 4 source modules + orchestrator    |
-| Modern JS/HTML/CSS, charting libraries           | `web/` — React + TypeScript, D3-geo, Chart.js    |
-| Python in an IDE                                 | `pipeline/` and `api/` (pytest, ruff)            |
-| Docker                                           | `api/Dockerfile`, `web/Dockerfile`, `docker-compose.yml` |
-| AI-assisted coding workflow                      | `docs/superpowers/specs/`, `docs/superpowers/plans/` (full design + plans + commit history) |
-| Decision-support tailored to AQ stakeholders     | Single-stakeholder framing throughout the UI     |
-
 ## Tech stack
 
 - **Pipeline** — Python 3.12, pandas, requests, pyyaml, fastkml, shapely,
