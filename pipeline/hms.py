@@ -10,6 +10,25 @@ logger = logging.getLogger(__name__)
 
 NS = {"kml": "http://www.opengis.net/kml/2.2"}
 
+BBox = tuple[float, float, float, float]
+
+
+def _ring_bbox(ring: list[list[float]]) -> tuple[float, float, float, float]:
+    lons = [p[0] for p in ring]
+    lats = [p[1] for p in ring]
+    return min(lons), min(lats), max(lons), max(lats)
+
+
+def _bbox_intersects(a: BBox, b: BBox) -> bool:
+    a_lon_min, a_lat_min, a_lon_max, a_lat_max = a
+    b_lon_min, b_lat_min, b_lon_max, b_lat_max = b
+    return not (
+        a_lon_max < b_lon_min
+        or a_lon_min > b_lon_max
+        or a_lat_max < b_lat_min
+        or a_lat_min > b_lat_max
+    )
+
 # HMS density bands (µg/m³); map to coarse labels for display. Used only when
 # a placemark carries a numeric Density value (test-fixture style).
 def _density_label(value: float) -> str:
@@ -29,7 +48,7 @@ _STYLE_RE = re.compile(r"Smoke_(Light|Medium|Heavy)", re.IGNORECASE)
 _DESC_RE = re.compile(r"Density\s*:\s*(Light|Medium|Heavy)", re.IGNORECASE)
 
 
-def _parse_kml(path: Path, day: date) -> list[dict]:
+def _parse_kml(path: Path, day: date, bbox: BBox | None = None) -> list[dict]:
     tree = ET.parse(path)
     root = tree.getroot()
     features: list[dict] = []
@@ -75,6 +94,12 @@ def _parse_kml(path: Path, day: date) -> list[dict]:
             lon, lat, *_ = token.split(",")
             ring.append([float(lon), float(lat)])
 
+        # HMS polygons routinely cover the entire continent; without a bbox
+        # filter the dashboard layers hundreds of translucent fills until the
+        # whole map saturates to brown.
+        if bbox is not None and not _bbox_intersects(_ring_bbox(ring), bbox):
+            continue
+
         if density_label is None:
             logger.warning("No density signal in placemark: %s", path)
             density_label = "Unknown"
@@ -87,12 +112,13 @@ def _parse_kml(path: Path, day: date) -> list[dict]:
     return features
 
 
-def transform(kml_by_day: dict[date, Path]) -> dict:
+def transform(kml_by_day: dict[date, Path], bbox: BBox | None = None) -> dict:
     """Parse one KML per day into a single GeoJSON FeatureCollection,
-    tagging each polygon with its `day`."""
+    tagging each polygon with its `day`. If `bbox` is provided, polygons whose
+    bounding box does not intersect it are dropped."""
     features: list[dict] = []
     for day, path in sorted(kml_by_day.items()):
-        features.extend(_parse_kml(path, day))
+        features.extend(_parse_kml(path, day, bbox=bbox))
     return {"type": "FeatureCollection", "features": features}
 
 

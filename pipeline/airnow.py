@@ -87,8 +87,18 @@ def transform(hourly_files: Iterable[Path], states: Iterable[str] | None = None)
         rows.sort(key=lambda r: r["ts"])
         peak = max(r["pm25"] for r in rows)
         hours_over = sum(1 for r in rows if r["pm25"] > NAAQS_PM25_24H)
+        # Per-day peak — lets the dashboard color monitors by that day's worst
+        # reading instead of the event-window peak. Day key is the UTC date
+        # from the timestamp; rounded to 1 decimal to match `summary.peak`.
+        daily: dict[str, float] = {}
+        for r in rows:
+            day = r["ts"][:10]
+            if r["pm25"] > daily.get(day, float("-inf")):
+                daily[day] = r["pm25"]
+        daily_peak = {d: round(v, 1) for d, v in sorted(daily.items())}
         m = dict(meta[mid])
         m["summary"] = {"peak": peak, "hours_exceeded_naaqs": hours_over}
+        m["daily_peak"] = daily_peak
         monitors.append(m)
     monitors.sort(key=lambda m: m["id"])
 

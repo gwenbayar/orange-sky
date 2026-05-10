@@ -75,7 +75,7 @@ def build_snapshot(
         sorted((raw_dir / "firms").glob("*.csv")),
         bbox=cfg.bbox,
     ))
-    smoke = hms.transform(_kmls_by_day(raw_dir / "hms"))
+    smoke = hms.transform(_kmls_by_day(raw_dir / "hms"), bbox=cfg.bbox)
     air = airnow.transform(
         sorted((raw_dir / "airnow").glob("HourlyAQObs_*.dat")),
         states=cfg.states,

@@ -4,6 +4,7 @@ data/raw/
 
 # Brainstorming companion artifacts
 .superpowers/
+.playwright-mcp/
 
 # Local worktrees
 .worktrees/

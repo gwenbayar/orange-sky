@@ -10,6 +10,7 @@ import { KpiRail } from './components/KpiRail';
 import { EventMap } from './components/EventMap';
 import { PM25Chart } from './components/PM25Chart';
 import { HistoricStrip } from './components/HistoricStrip';
+import { AboutPanel } from './components/AboutPanel';
 import './App.css';
 
 type FiresFC = FeatureCollection<{ type: 'Point'; coordinates: [number, number] }, FireProps>;
@@ -87,6 +88,8 @@ export default function App() {
           Sources: NASA FIRMS · NOAA HMS · AirNow · USFS FPA FOD
         </div>
       </header>
+
+      <AboutPanel event={event} />
 
       <div className="layout">
         <KpiRail event={event} monitors={monitors} />

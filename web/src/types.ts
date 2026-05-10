@@ -20,6 +20,9 @@ export interface MonitorSummary {
   lon: number;
   agency: string;
   summary: { peak: number; hours_exceeded_naaqs: number };
+  // ISO date (YYYY-MM-DD) → that day's peak PM2.5 µg/m³ for this monitor.
+  // Lets the map color monitors per-day instead of by event-window peak.
+  daily_peak: Record<string, number>;
 }
 
 export interface MonitorTSPoint {
