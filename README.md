@@ -1,4 +1,4 @@
-# PNW Smoke Response Dashboard
+# OrangeSky: PNW Smoke Response Dashboard
 
 A working prototype of an air-quality-agency decision-support dashboard for a
 Pacific Northwest wildfire smoke event. Combines satellite fire detections,
