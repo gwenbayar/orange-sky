@@ -49,7 +49,7 @@ are exceeding NAAQS, and how is it tracking against the source fires?*
   so the event can be read against the long-run baseline.
 
 <img width="1470" height="756" alt="Screenshot 2026-05-09 at 7 23 43 PM" src="https://github.com/user-attachments/assets/3490e9cb-0ea1-44c2-bbd8-fce7fd30faf4" />
-<img width="1470" height="753" alt="Screenshot 2026-05-09 at 8 10 26 PM" src="https://github.com/user-attachments/assets/c7bf9a0b-dc03-4353-8bd1-c5d7da1582d9" />
+<img width="1470" height="753" alt="Screenshot 2026-05-09 at 8 10 26 PM" src="https://github.com/user-attachments/assets/d6d5ef47-d3a1-44c9-8e6b-8c6bb0dd62fe" />
 <img width="1470" height="715" alt="Screenshot 2026-05-09 at 8 11 30 PM" src="https://github.com/user-attachments/assets/16789bf2-1b6b-4275-b099-5968b8d95436" />
 
 
