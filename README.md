@@ -8,7 +8,7 @@ occurrence baseline into a single web view.
 The shipped event is the **2020 Labor Day Fires** (OR/WA), Sept 7–14, 2020 —
 one of the most extreme smoke events on record in the Pacific Northwest.
 
-<img width="1470" height="812" alt="Screenshot 2026-05-09 at 9 43 04 PM" src="https://github.com/user-attachments/assets/22e69073-e7b9-432a-982c-8ebdc0730bc5" />
+<img width="1470" height="809" alt="Screenshot 2026-05-09 at 9 47 19 PM" src="https://github.com/user-attachments/assets/78d45ac0-932a-4d43-a160-ffa554479cc6" />
 <img width="1469" height="795" alt="Screenshot 2026-05-09 at 9 43 20 PM" src="https://github.com/user-attachments/assets/4679bb52-732d-44a3-aef7-4968fc210e62" />
 <img width="1470" height="731" alt="Screenshot 2026-05-09 at 9 43 58 PM" src="https://github.com/user-attachments/assets/6a1da4dd-e938-44b8-95e8-b6ff3caaccd3" />
 
