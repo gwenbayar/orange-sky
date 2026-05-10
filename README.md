@@ -5,12 +5,6 @@ Pacific Northwest wildfire smoke event. Combines satellite fire detections,
 ground-based PM2.5 monitors, smoke-plume polygons, and a historic fire-
 occurrence baseline into a single web view.
 
-Built as a portfolio project for the **USDA Forest Service AirFire fellowship
-at the Pacific Northwest Research Station** (Seattle). The fellowship is about
-prototyping decision-support dashboards from heterogeneous wildfire/air-
-quality data using AI-assisted coding; this repo intentionally mirrors that
-scope.
-
 The shipped event is the **2020 Labor Day Fires** (OR/WA), Sept 7–14, 2020 —
 one of the most extreme smoke events on record in the Pacific Northwest.
 
