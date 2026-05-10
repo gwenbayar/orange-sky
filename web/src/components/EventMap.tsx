@@ -130,13 +130,13 @@ export function EventMap({
     if (contextStateFeatures.length) {
       proj.fitExtent(
         [[14, 14], [WIDTH - 14, HEIGHT - 14]],
-        { type: 'FeatureCollection', features: contextStateFeatures } as unknown as GeoJSON.GeoJsonObject,
+        { type: 'FeatureCollection', features: contextStateFeatures } as never,
       );
     } else {
       const [w, s, e, n] = event.bbox;
       proj.fitExtent(
         [[14, 14], [WIDTH - 14, HEIGHT - 14]],
-        { type: 'Polygon', coordinates: [[[w, s], [e, s], [e, n], [w, n], [w, s]]] } as GeoJSON.Polygon,
+        { type: 'Polygon', coordinates: [[[w, s], [e, s], [e, n], [w, n], [w, s]]] } as never,
       );
     }
     return proj;
