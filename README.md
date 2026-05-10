@@ -24,12 +24,25 @@ are exceeding NAAQS, and how is it tracking against the source fires?*
 
 ## What's on screen
 
-- **KPI rail** — peak PM2.5, monitors over the 35 µg/m³ NAAQS threshold,
-  active fire-detect count, smoke-day count
-- **Map** — US state outlines, daily NOAA HMS smoke polygons,
-  FIRMS active-fire detects (top 4 000 by FRP for SVG performance), and
-  AirNow monitors colored by their AQI category. Click a monitor to drill
-  into its hourly PM2.5 history.
+- **About panel** — collapsible reading guide pinned at the top of the
+  dashboard. Explains what each layer means, the data sources, and the
+  caveats. Open by default; users can collapse it after their first read.
+- **KPI rail** — peak PM2.5 across all monitors, count of monitors over the
+  35 µg/m³ NAAQS threshold, active fire-detect count, total HMS smoke
+  polygons (with the day count as a subline).
+- **Map** — focused on the event states (WA / OR / ID / MT / CA) plus a
+  curated ring of context-state neighbors. A day-strip selector flips the
+  map between two views:
+  - **Overall** — fires aggregated across the event window (top 4,000 by
+    FRP), monitors colored by their event-window peak PM2.5, smoke layer
+    hidden (smoke is intrinsically a daily field).
+  - **Day in view** — fires + smoke + monitor color all filtered to a single
+    day. NOAA HMS smoke is grouped by density (Heavy / Medium / Light), each
+    tier rendered as an isolated group with opaque fill + group opacity to
+    prevent multi-polygon alpha buildup, and clipped to the event-state
+    silhouettes so it follows real borders instead of an arbitrary rectangle.
+    Monitors with no reading on the selected day render as faint gray.
+  - Click any monitor to drill into its hourly PM2.5 trace.
 - **PM2.5 time-series** — hourly trace for the selected monitor, with the
   NAAQS reference and the count of hours over the standard during the window.
 - **Historic context strip** — PNW yearly fires from FPA FOD (1992–2015),
