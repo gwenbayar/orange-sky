@@ -8,13 +8,9 @@ occurrence baseline into a single web view.
 The shipped event is the **2020 Labor Day Fires** (OR/WA), Sept 7–14, 2020 —
 one of the most extreme smoke events on record in the Pacific Northwest.
 
-## Stakeholder & question
-
-**Audience:** A state, tribal, or federal air-quality analyst tracking a
-multi-day smoke event in near-real-time.
-
-**The question they need answered:** *Where is smoke right now, which monitors
-are exceeding NAAQS, and how is it tracking against the source fires?*
+<img width="1470" height="812" alt="Screenshot 2026-05-09 at 9 43 04 PM" src="https://github.com/user-attachments/assets/22e69073-e7b9-432a-982c-8ebdc0730bc5" />
+<img width="1469" height="795" alt="Screenshot 2026-05-09 at 9 43 20 PM" src="https://github.com/user-attachments/assets/4679bb52-732d-44a3-aef7-4968fc210e62" />
+<img width="1470" height="731" alt="Screenshot 2026-05-09 at 9 43 58 PM" src="https://github.com/user-attachments/assets/6a1da4dd-e938-44b8-95e8-b6ff3caaccd3" />
 
 ## What's on screen
 
@@ -42,9 +38,13 @@ are exceeding NAAQS, and how is it tracking against the source fires?*
 - **Historic context strip** — PNW yearly fires from FPA FOD (1992–2015),
   so the event can be read against the long-run baseline.
 
-<img width="1470" height="756" alt="Screenshot 2026-05-09 at 7 23 43 PM" src="https://github.com/user-attachments/assets/3490e9cb-0ea1-44c2-bbd8-fce7fd30faf4" />
-<img width="1470" height="753" alt="Screenshot 2026-05-09 at 8 10 26 PM" src="https://github.com/user-attachments/assets/d6d5ef47-d3a1-44c9-8e6b-8c6bb0dd62fe" />
-<img width="1470" height="715" alt="Screenshot 2026-05-09 at 8 11 30 PM" src="https://github.com/user-attachments/assets/16789bf2-1b6b-4275-b099-5968b8d95436" />
+## Stakeholder & question
+
+**Audience:** A state, tribal, or federal air-quality analyst tracking a
+multi-day smoke event in near-real-time.
+
+**The question they need answered:** *Where is smoke right now, which monitors
+are exceeding NAAQS, and how is it tracking against the source fires?*
 
 ## Tech stack
 
